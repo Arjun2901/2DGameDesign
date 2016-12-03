@@ -109,7 +109,7 @@
         <size>30</size>
         <distance>200</distance>  
   </chunk>
-  <numberofEnemy>4</numberofEnemy>
+  <numberofEnemy>10</numberofEnemy>
 </Enemy>
 
 <genie>

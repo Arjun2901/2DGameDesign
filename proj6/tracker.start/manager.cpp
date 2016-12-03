@@ -344,6 +344,7 @@ void Manager::play()
 		   clock.start();
            bar.reset();
            player->reset();
+           score = 0;
            toggleGodMode =0;
            std::vector<Drawable*>::iterator iter = sprites.begin(); 	
 	       while(iter != sprites.end()){

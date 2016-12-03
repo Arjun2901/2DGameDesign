@@ -165,6 +165,7 @@ void Enemy2Msprite::update(Uint32 ticks)
 		delete explosion;
 		explosion = NULL;
 	}
+	resetPosition();
 	return;
   }
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
