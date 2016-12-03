@@ -101,7 +101,7 @@
   <endLoc x="500" y="700"/>
   <frames>12</frames>
   <frameInterval>150</frameInterval>
-  <speedX>-55</speedX>
+  <speedX>-68</speedX>
   <speedY>20</speedY>
   <transparency>true</transparency>
   <attackDistance>200</attackDistance>
