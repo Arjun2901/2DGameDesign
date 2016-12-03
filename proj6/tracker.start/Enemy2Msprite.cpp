@@ -9,6 +9,8 @@
 #include "viewport.h"
 #include <cmath>
 
+int flag11 = 0;
+
 float distance(float x1, float y1, float x2, float y2) 
 {
   float x = x1-x2;
@@ -142,13 +144,12 @@ void Enemy2Msprite::draw() const
 
 void Enemy2Msprite::resetPosition()
 {
-   
+  flag11 = 1;
   Vector2f position(Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/x"), 
   Gamedata::getInstance().getXmlInt(getName()+"/endLoc/x")), 
   Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/y"), 
   Gamedata::getInstance().getXmlInt(getName()+"/endLoc/y")));
   setPosition(position);
-  flag11 = 1;
 }
 
 void Enemy2Msprite::goLeft()  
