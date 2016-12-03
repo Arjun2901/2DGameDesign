@@ -204,11 +204,13 @@ bool Manager::checkForCollisions()
 		 sound.playSound(1);
 		 count++;
 		 bExploding = true;
+		 int score = player->getGameScore();
+		 ++score;
+		 player->setGameScore(score);
 	  }
+
   }
-  unsigned int score = player->getGameScore();
-  score = score * 10;
-  player->setGameScore(score);
+
   return bExploding;
 }
 

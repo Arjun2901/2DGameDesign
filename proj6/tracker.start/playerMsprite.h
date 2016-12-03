@@ -23,7 +23,7 @@ public:
   void shoot();
   void reset();
   int getGameScore () const { return gameScore; }
-  void setGameScore(const int score)
+  void setGameScore(int score)
   {
 	  gameScore = score;
   }
