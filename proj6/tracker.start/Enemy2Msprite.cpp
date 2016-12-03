@@ -6,6 +6,7 @@
 #include <iomanip>
 #include "sprite.h"
 #include "explodingSprite.h"
+#include "viewport.h"
 #include <cmath>
 
 float distance(float x1, float y1, float x2, float y2) 
@@ -43,6 +44,7 @@ void Enemy2Msprite::advanceFrame(Uint32 ticks)
 
 Enemy2Msprite::Enemy2Msprite( const std::string& name, const Vector2f &pos, const Vector2f &vel, int w, int h) :
   Drawable(name, pos, vel),
+  io(IOManager::getInstance()),
   explosion(NULL),
   frames( FrameFactory::getInstance().getFrames(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("Sky/width")),
@@ -63,6 +65,7 @@ Enemy2Msprite::Enemy2Msprite( const std::string& name, const Vector2f &pos, cons
 
 Enemy2Msprite::Enemy2Msprite(const Enemy2Msprite& s) :
   Drawable(s), 
+  io(IOManager::getInstance()),
   explosion(NULL),
   frames(s.frames),
   worldWidth( s.worldWidth ),
@@ -123,7 +126,14 @@ void Enemy2Msprite::draw() const
 	//bullet.draw();
   Uint32 x = static_cast<Uint32>(X());
   Uint32 y = static_cast<Uint32>(Y());
+  
   frames[currentFrame]->draw(x, y);
+  int p = 10+ X() - Viewport::getInstance().X();
+  int q = 10+ Y() - Viewport::getInstance().Y();
+  std::stringstream strm;
+  strm << currentMode;
+  io.printMessageBlackAt( strm.str(), p, q);
+  
 }
 
 void Enemy2Msprite::resetPosition()

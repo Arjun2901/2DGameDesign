@@ -60,6 +60,21 @@ SDL_Surface* IOManager::loadAndSet(const string& filename, bool setcolorkey) con
   return image;
 }
 
+void IOManager::
+printMessageBlackAt(const string& msg, Sint16 x, Sint16 y) const {
+  static const SDL_Color black = {0, 0, 0, 255};
+   SDL_Rect dest = {x,y,0,0};
+   SDL_Surface * stext = TTF_RenderText_Blended(font, msg.c_str(), black);
+   if (stext) {
+     SDL_BlitSurface( stext, NULL, screen, &dest );
+     SDL_FreeSurface(stext);
+   }
+   else {
+     throw 
+     string("Couldn't allocate text sureface in printMessageAt");
+   }
+}
+
 void IOManager::printMessageAt(const string& msg, Sint16 x, Sint16 y) const {
    Uint16 zero = 0;
    SDL_Rect dest = {x,y,zero,zero};

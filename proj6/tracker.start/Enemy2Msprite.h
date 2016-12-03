@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "drawable.h"
+#include "ioManager.h"
 
 class ExplodingSprite; 
 class Enemy2Msprite : public Drawable {
@@ -27,6 +28,7 @@ public:
 
 protected:
   enum MODE {NORMAL, EVADE};
+  IOManager& io;
   ExplodingSprite* explosion;
   const std::vector<Frame *> frames;
   int worldWidth;
