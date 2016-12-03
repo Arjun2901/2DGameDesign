@@ -69,7 +69,8 @@ Manager::Manager() :
   lose(0),
   win(0)
 {
-  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+  if (SDL_Init(SDL_INIT_VIDEO) != 0) 
+  {
     throw string("Unable to initialize SDL: ");
   }
   SDL_WM_SetCaption(title.c_str(), NULL);
@@ -81,7 +82,8 @@ Manager::Manager() :
   viewport.setObjectToTrack(sprites[currentSprite]);
 }
 
-void Manager::makeEnemy(){
+void Manager::makeEnemy()
+{
 	std::string name = "Enemy";
 	unsigned numberofEnemy = Gamedata::getInstance().getXmlInt("Enemy/numberofEnemy");
 	Enemy2Msprite *enemies = NULL;
@@ -98,37 +100,47 @@ void Manager::makeEnemy(){
 	}	
 }
 
-void Manager::makeOrbs() {
+void Manager::makeOrbs() 
+{
   unsigned numberOfOrbs = Gamedata::getInstance().getXmlInt("numberOfOrbs");
   orbs.reserve( numberOfOrbs );
-  for (unsigned i = 0; i < numberOfOrbs; ++i) {
+  for (unsigned i = 0; i < numberOfOrbs; ++i) 
+  {
     orbs.push_back( new ScaledSprite("redorb", orbSurface) );
   }
   sort(orbs.begin(), orbs.end(), ScaledSpriteCompare());
 }
 
-void Manager::printOrbs() const {
-  for (unsigned i = 0; i < orbs.size(); ++i) {
+void Manager::printOrbs() const 
+{
+  for (unsigned i = 0; i < orbs.size(); ++i) 
+  {
+	  //do nothing
   }
 }
 
-void Manager::draw() const {
+void Manager::draw() const 
+{
   Sky.draw();
-  for (unsigned j = 0; j < (orbs.size()/3); ++j) {
+  for (unsigned j = 0; j < (orbs.size()/3); ++j) 
+  {
     orbs[j]->draw();
   }
   Pyramid.draw();
   Buildings.draw();
   Land.draw(); 
-  for (unsigned j = orbs.size()/3; j < orbs.size()/2; ++j) {
+  for (unsigned j = orbs.size()/3; j < orbs.size()/2; ++j) 
+  {
     orbs[j]->draw();
   }
   
-  for (unsigned j = orbs.size()/2; j < (orbs.size()); ++j) {
+  for (unsigned j = orbs.size()/2; j < (orbs.size()); ++j) 
+  {
     orbs[j]->draw();
   }
 
-  for (unsigned i = 0; i < sprites.size(); ++i) {
+  for (unsigned i = 0; i < sprites.size(); ++i) 
+  {
     sprites[i]->draw();
   }
 	player->draw();
@@ -164,7 +176,8 @@ void Manager::draw() const {
   SDL_Flip(screen);
 }
 
-void Manager::makeFrame() {
+void Manager::makeFrame() 
+{
   std::stringstream strm;
   strm << "frames/" << username<< '.' 
        << std::setfill('0') << std::setw(4) 
@@ -174,7 +187,8 @@ void Manager::makeFrame() {
   SDL_SaveBMP(screen, filename.c_str());
 }
 
-void Manager::switchSprite() {
+void Manager::switchSprite() 
+{
   viewport.setObjectToTrack(player);
 }
 
@@ -197,34 +211,40 @@ bool Manager::checkForCollisions()
   return bExploding;
 }
 
-void Manager::update() {
+void Manager::update() 
+{
   ++clock;
   viewport.setObjectToTrack(player);
   Uint32 ticks = clock.getElapsedTicks();
   
   static unsigned int lastSeconds = clock.getSeconds();
-  if ( clock.getSeconds() - lastSeconds == 5 ) {
+  if ( clock.getSeconds() - lastSeconds == 5 ) 
+  {
     lastSeconds = clock.getSeconds();
-    //switchSprite();
   }
   
-  if ( checkForCollisions() ) {
+  if ( checkForCollisions() ) 
+  {
     io.printMessageAt("One Down! Many to go", 360, 60);
     
   }
-  else {
+  else 
+  {
     io.printMessageAt("Ready to Shoot", 360, 60);
   }
-  for (unsigned int i = 0; i < sprites.size(); ++i) {
+  for (unsigned int i = 0; i < sprites.size(); ++i) 
+  {
 	Enemy2Msprite* emSprite = dynamic_cast<Enemy2Msprite*>(sprites[i]);
 	if(emSprite)
 		emSprite->setPlayerPos(player->getPosition());  
     sprites[i]->update(ticks);
   }
-  for (unsigned j = 0; j < orbs.size(); ++j) {
+  for (unsigned j = 0; j < orbs.size(); ++j) 
+  {
     orbs[j]->update(ticks);
   }
-  if ( makeVideo && frameCount < frameMax ) {
+  if ( makeVideo && frameCount < frameMax ) 
+  {
     makeFrame();
   }
   
@@ -267,15 +287,16 @@ void Manager::update() {
   viewport.update(); // always update viewport last
 }
 
-void Manager::play() {
-  
+void Manager::play() 
+{
   SDL_Event event;
   bool done = false;
   bool keyCatch = false;
   
-  while ( not done ) {
-    while ( SDL_PollEvent(&event) ) {
-		
+  while ( not done )
+  {
+    while ( SDL_PollEvent(&event) ) 
+    {
       Uint8 *keystate = SDL_GetKeyState(NULL);
       if (event.type ==  SDL_QUIT) { done = true; break; }
       if(event.type == SDL_KEYDOWN) {
