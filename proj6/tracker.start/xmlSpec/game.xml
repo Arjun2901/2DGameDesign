@@ -168,6 +168,7 @@
     <frameInterval>250</frameInterval>
     <speedX>-75</speedX>
     <speedY>0</speedY>
+    <distance> 175</distance>
     <transparency>true</transparency>
 </bullet>
 </GameData>

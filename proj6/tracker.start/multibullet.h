@@ -16,9 +16,9 @@ public:
   void update(Uint32 ticks, const Vector2f& pPos);
   virtual bool collidedWith(const Drawable* d);
   bool goneTooFar() const { return tooFar; }
-  void reset() {
+  void reset() 
+  {
     tooFar = false;
-    //distance = 0;
   }
   void setStrategy(CollisionStrategy* newStrategy);
 private:
@@ -26,7 +26,6 @@ private:
   float maxDistance;
   bool tooFar;
   CollisionStrategy* strategy;
-  //multibullet(const multibullet&); // Explicit disallow (Item 6)
   multibullet& operator=(const multibullet&); // (Item 6)
 };
 

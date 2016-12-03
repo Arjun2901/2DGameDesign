@@ -9,7 +9,8 @@
 
 extern int flag;
 extern int flag1;
-void TwowayMSprite::advanceFrame(Uint32 ticks) {
+void TwowayMSprite::advanceFrame(Uint32 ticks) 
+{
 	timeSinceLastFrame += ticks;
 	if (timeSinceLastFrame > frameInterval) {
     currentFrame = (currentFrame+1) % numberOfFrames;
@@ -79,7 +80,8 @@ void TwowayMSprite::draw() const {
   frames[currentFrame]->draw(x, y);
 }
 
-void TwowayMSprite::update(Uint32 ticks) { 
+void TwowayMSprite::update(Uint32 ticks) 
+{ 
  advanceFrame(ticks);
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;

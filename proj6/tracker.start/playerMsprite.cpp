@@ -11,8 +11,10 @@
 extern int flag;
 extern int flag1;
 
-playerMsprite::~playerMsprite() {
-  for (unsigned i = 0; i < strategies.size(); ++i) {
+playerMsprite::~playerMsprite() 
+{
+  for (unsigned i = 0; i < strategies.size(); ++i) 
+  {
     delete strategies[i];
   }
   if(explosion)
@@ -21,7 +23,8 @@ playerMsprite::~playerMsprite() {
 	  explosion = NULL;
   }
 }
-void playerMsprite::advanceFrame(Uint32 ticks) {
+void playerMsprite::advanceFrame(Uint32 ticks) 
+{
 	timeSinceLastFrame += ticks;
 	unsigned int mid = numberOfFrames/2;
 	if (timeSinceLastFrame > frameInterval) 
@@ -81,7 +84,7 @@ playerMsprite::playerMsprite( const std::string& name) :
   strategies.push_back( new RectangularCollisionStrategy );
   strategies.push_back( new PerPixelCollisionStrategy );
   strategy = strategies[0];
-	}
+}
 
 playerMsprite::playerMsprite( const std::string& name, const Vector2f &pos, const Vector2f &vel) :
   Drawable(name, pos, vel),
@@ -180,24 +183,27 @@ void playerMsprite::shoot()
     bullet.shoot(Vector2f(x,y), vel);
 }
 
-void playerMsprite::explode(){
+void playerMsprite::explode()
+{
 	if(explosion) return;
 	explosion = new ExplodingSprite(Sprite(getName(), getPosition(), getVelocity(), frames[currentFrame]));
 }	
-void playerMsprite::draw() const {
+void playerMsprite::draw() const 
+{
 	strategy->draw(); 
-	if (explosion){
+	if (explosion)
+	{
 		explosion->draw();
 		return;
 	}
-  
   bullet.draw();
   Uint32 x = static_cast<Uint32>(X());
   Uint32 y = static_cast<Uint32>(Y());
   frames[currentFrame]->draw(x, y);
 }
 
-void playerMsprite::detach( Enemy2Msprite* o ) {
+void playerMsprite::detach( Enemy2Msprite* o ) 
+{
   std::list<Enemy2Msprite*>::iterator ptr = observers.begin();
   while ( ptr != observers.end() ) {
     if ( *ptr == o ) {
@@ -218,7 +224,8 @@ bool playerMsprite::check_win()
 	  return var;
 	  
 }
-void playerMsprite::update(Uint32 ticks) { 
+void playerMsprite::update(Uint32 ticks) 
+{ 
   advanceFrame(ticks);
 if (explosion){
 		explosion->update(ticks);

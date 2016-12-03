@@ -55,13 +55,8 @@ protected:
   void advanceFrame(Uint32 ticks);
   void flipImage(Uint32 ticks);
   playerMsprite& operator=(const playerMsprite& rhs);
- // float playerWidth;
- // float playerHeight;
- // Vector2f velocity;
   std::vector<CollisionStrategy*> strategies;
   CollisionStrategy * strategy;
   std::list<Enemy2Msprite*> observers; 
-  
-  
 };
 #endif

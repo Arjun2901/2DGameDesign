@@ -26,13 +26,11 @@ void multibullets::shoot(const Vector2f& pos, const Vector2f& vel)
 {
 	if(freelist.empty())
 	{
-		//std::cout << "Empty freelist" << std::endl;
 		multibullet bullet(name, pos, vel);
 		bulletlist.push_back(bullet);
 	}
 	else
 	{
-        //std::cout << "entered freelist" << std::endl;
 		multibullet b = freelist.front();
 		freelist.pop_front();
 		b.reset();
@@ -47,18 +45,21 @@ void multibullets::draw() const {
   // So the draw we're using is actually in Sprite
   std::list<multibullet>::const_iterator ptr = bulletlist.begin();
     //std::cout << "bulletList Size" << bulletlist.size() << std::endl;
-  while (ptr != bulletlist.end()) {
+  while (ptr != bulletlist.end()) 
+  {
     (*ptr).draw();
     ++ptr;
   }
 }
 
-void multibullets::update(Uint32 ticks, const Vector2f& pPos) { 
+void multibullets::update(Uint32 ticks, const Vector2f& pPos) 
+{ 
   std::list<multibullet>::iterator ptr = bulletlist.begin();
-  while (ptr != bulletlist.end()) {
+  while (ptr != bulletlist.end()) 
+  {
     (*ptr).update(ticks, pPos);
-    if ((*ptr).goneTooFar()) { 
-
+    if ((*ptr).goneTooFar())
+     { 
 	   // Check to see if we should free a chunk
         freelist.push_back(*ptr);
         ptr = bulletlist.erase(ptr);
@@ -75,7 +76,8 @@ void multibullets::reset(){
  }
 }
 
-bool multibullets::collidedWith(const Drawable* obj){
+bool multibullets::collidedWith(const Drawable* obj)
+{
    std::list<multibullet>::iterator ptr = bulletlist.begin();
    while(ptr != bulletlist.end()){   
      if((*ptr).collidedWith(obj)){

@@ -15,7 +15,6 @@ public:
 	void update(Uint32 ticks, const Vector2f& pPos);
 	void shoot(const Vector2f& pos, const Vector2f& vel);
 	bool collidedWith(const Drawable* obj);
-	
 	bool canShoot() const { return !bulletlist.empty();}
   unsigned int getBulletlistCount() const {return bulletlist.size();}
   unsigned int getFreelistCount() const {return freelist.size();}

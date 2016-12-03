@@ -192,7 +192,6 @@ void Manager::switchSprite()
   viewport.setObjectToTrack(player);
 }
 
-
 bool Manager::checkForCollisions() 
 { 
 	bool bExploding = false;
@@ -201,7 +200,6 @@ bool Manager::checkForCollisions()
 	  if (sprites[i]->getName()=="Enemy" && player->getbullet().collidedWith(sprites[i]))
 	  {
 		 sprites[i]->explode();
-		 
 		 sound.playSound(1);
 		 count++;
 		 bExploding = true;
@@ -261,8 +259,7 @@ void Manager::update()
 		 bar.update();
 		 bar.draw();
 		 SDL_Flip(screen);
-	  }
-	  
+	  } 
   }
  if (player->check_win())
  {
