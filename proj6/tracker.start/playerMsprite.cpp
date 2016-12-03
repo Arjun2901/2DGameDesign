@@ -288,9 +288,9 @@ if (explosion){
   }    
   
   bullet.update(ticks, getPosition());
-  std::list<Enemy2Msprite*>::iterator ptr = observers.begin();
+ /* std::list<Enemy2Msprite*>::iterator ptr = observers.begin();
   while ( ptr != observers.end() ) {
     (*ptr)->setPlayerPos( getPosition() );
     ++ptr;
-  }
+  }*/
 }

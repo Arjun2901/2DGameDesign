@@ -343,21 +343,26 @@ void Manager::play()
         {
 		   clock.start();
            bar.reset();
-           player->reset();
-           score = 0;
-           toggleGodMode =0;
            std::vector<Drawable*>::iterator iter = sprites.begin(); 	
-	       while(iter != sprites.end()){
+	       while(iter != sprites.end())
+	       {
 			   if((*iter)->getName() == "Enemy")
 			   { 			
-		         delete *iter; 			
-		         iter = sprites.erase(iter); 			
-		       } 
-		       else iter++; 			
+				  delete *iter; 			
+				  iter = sprites.erase(iter); 			
+				} 
+				else iter++; 			
 		   }
 		   lose = 0;
 		   win = 0; 
 		   makeEnemy();
+		   sprites.push_back( new Sprite("genie") );
+		   sprites.push_back( new Sprite("jasmine") );
+           player->reset();
+           score = 0;
+           flag = 0;
+           flag1 = 0;
+           toggleGodMode =0;
            break;
         }
         if(keystate[SDLK_F1]) {

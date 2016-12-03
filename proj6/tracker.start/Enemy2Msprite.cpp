@@ -134,7 +134,6 @@ void Enemy2Msprite::resetPosition()
   Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/y"), 
   Gamedata::getInstance().getXmlInt(getName()+"/endLoc/y")));
   setPosition(position);
-  bExplode = false;
 }
 
 void Enemy2Msprite::goLeft()  
