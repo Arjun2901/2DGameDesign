@@ -20,7 +20,6 @@ public:
   ~Manager ();
   void play();
   void switchSprite();
-
 private:
   const bool env;
   IOManager& io;
@@ -47,7 +46,6 @@ private:
   const std::string title;
   const int frameMax;
   SDLSound sound;
-  int score;
   int count;
   bool isObjPoolDiplayHud;
   bool toggleGodMode;

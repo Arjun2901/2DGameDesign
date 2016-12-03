@@ -62,7 +62,6 @@ Manager::Manager() :
   title( Gamedata::getInstance().getXmlStr("screenTitle") ),
   frameMax( Gamedata::getInstance().getXmlInt("frameMax") ),
   sound(),
-  score(0),
   count(0),
   isObjPoolDiplayHud(false),
   toggleGodMode(0),
@@ -149,11 +148,11 @@ void Manager::draw() const
   
   if (lose)
   {
-	  hud1.gameover_lost(score);
+	  hud1.gameover_lost(player->getGameScore());
   }
   if (win)
   {
-	  hud1.gameover_win(score);
+	  hud1.gameover_win(player->getGameScore());
   }
   if(isDiplayHud || clock.getSeconds() < 4)
   {
@@ -166,7 +165,7 @@ void Manager::draw() const
   }
   
   io.printMessageAt(title, 10, 450);
-  io.printMessageValueAt("Score : ", score , 360, 80);
+  io.printMessageValueAt("Score : ", player->getGameScore() , 360, 80);
   io.printMessageAt("Ready to Shoot", 360, 60);
   if(toggleGodMode ==1)
   {
@@ -207,7 +206,9 @@ bool Manager::checkForCollisions()
 		 bExploding = true;
 	  }
   }
-  score = count * 10;
+  unsigned int score = player->getGameScore();
+  score = score * 10;
+  player->setGameScore(score);
   return bExploding;
 }
 
@@ -343,6 +344,7 @@ void Manager::play()
         {
 		   clock.start();
            bar.reset();
+           bar.setLen(0);
            std::vector<Drawable*>::iterator iter = sprites.begin(); 	
 	       while(iter != sprites.end())
 	       {
@@ -359,7 +361,6 @@ void Manager::play()
 		   sprites.push_back( new Sprite("genie") );
 		   sprites.push_back( new Sprite("jasmine") );
            player->reset();
-           score = 0;
            flag = 0;
            flag1 = 0;
            toggleGodMode =0;

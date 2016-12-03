@@ -16,6 +16,10 @@ public:
   void update();
   void reset() { currentLength = totalLength; }
   int getLen() const { return barlen; }
+  void setLen(const int len) 
+  {
+	  barlen = len;
+  }
 private:
   SDL_Surface* screen;
   Vector2f start;

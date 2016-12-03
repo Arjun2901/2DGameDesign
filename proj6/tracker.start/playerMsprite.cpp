@@ -76,6 +76,7 @@ playerMsprite::playerMsprite( const std::string& name) :
   timeSinceLastFrame( 0 ),
   frameWidth(frames[0]->getWidth()),
   frameHeight(frames[0]->getHeight()),
+  gameScore(0),
   strategies(),
   strategy( NULL ),
   observers()  
@@ -100,6 +101,7 @@ playerMsprite::playerMsprite( const std::string& name, const Vector2f &pos, cons
   timeSinceLastFrame( 0 ),
   frameWidth(frames[0]->getWidth()),
   frameHeight(frames[0]->getHeight()),
+  gameScore(0),
   strategies(),
   strategy( NULL ),
   observers() 
@@ -127,6 +129,7 @@ playerMsprite::playerMsprite(const std::string& name,
   timeSinceLastFrame( 0 ),
   frameWidth(fms[0]->getWidth()),
   frameHeight(fms[0]->getHeight()),
+  gameScore(0),
   strategies(),
   strategy( NULL ),
   observers() 
@@ -151,6 +154,7 @@ playerMsprite::playerMsprite(const playerMsprite& s) :
   timeSinceLastFrame( s.timeSinceLastFrame ),
   frameWidth( s.frameWidth ),
   frameHeight( s.frameHeight ),
+  gameScore(s.gameScore),
   strategies(),
   strategy( NULL ),
   observers(s.observers)
@@ -162,6 +166,7 @@ void playerMsprite::reset()
 	Y(680);
 	velocityX(-75);
 	velocityY(75);
+	gameScore = 0;
 	
 }
 void playerMsprite::shoot()
@@ -288,9 +293,4 @@ if (explosion){
   }    
   
   bullet.update(ticks, getPosition());
- /* std::list<Enemy2Msprite*>::iterator ptr = observers.begin();
-  while ( ptr != observers.end() ) {
-    (*ptr)->setPlayerPos( getPosition() );
-    ++ptr;
-  }*/
 }

@@ -22,6 +22,11 @@ public:
   virtual void draw() const; 
   void shoot();
   void reset();
+  int getGameScore () const { return gameScore; }
+  void setGameScore(const int score)
+  {
+	  gameScore = score;
+  }
   bool check_win();
   multibullets getbullet() const { return bullet; }
 
@@ -52,6 +57,7 @@ protected:
   float timeSinceLastFrame;
   int frameWidth;
   int frameHeight;
+  int gameScore;
   void advanceFrame(Uint32 ticks);
   void flipImage(Uint32 ticks);
   playerMsprite& operator=(const playerMsprite& rhs);
