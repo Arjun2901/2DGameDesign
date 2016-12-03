@@ -40,13 +40,12 @@ protected:
   int frameWidth;
   int frameHeight;
   bool bExplode;
+  int flag;
   Vector2f playerPos;
   const float attackDistance;
   int playerWidth;
   int playerHeight;
   MODE currentMode;
-  
-
   void advanceFrame(Uint32 ticks);
   void flipImage(Uint32 ticks);
   Enemy2Msprite& operator=(const Enemy2Msprite& rhs);

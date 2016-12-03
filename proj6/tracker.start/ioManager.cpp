@@ -63,7 +63,9 @@ SDL_Surface* IOManager::loadAndSet(const string& filename, bool setcolorkey) con
 void IOManager::
 printMessageBlackAt(const string& msg, Sint16 x, Sint16 y) const {
   static const SDL_Color black = {0, 0, 0, 255};
-   SDL_Rect dest = {x,y,0,0};
+  Sint16 p = 20;
+  Sint16 q = 20;
+   SDL_Rect dest = {x,y,p,q};
    SDL_Surface * stext = TTF_RenderText_Blended(font, msg.c_str(), black);
    if (stext) {
      SDL_BlitSurface( stext, NULL, screen, &dest );

@@ -9,8 +9,6 @@
 #include "viewport.h"
 #include <cmath>
 
-int flag11 = 0;
-
 float distance(float x1, float y1, float x2, float y2) 
 {
   float x = x1-x2;
@@ -58,6 +56,7 @@ Enemy2Msprite::Enemy2Msprite( const std::string& name, const Vector2f &pos, cons
   frameWidth(frames[0]->getWidth()),
   frameHeight(frames[0]->getHeight()),
   bExplode(false),
+  flag(0),
   playerPos(),
   attackDistance(Gamedata::getInstance().getXmlInt(getName()+"/attackDistance")),
   playerWidth(w),
@@ -79,6 +78,7 @@ Enemy2Msprite::Enemy2Msprite(const Enemy2Msprite& s) :
   frameWidth( s.frameWidth ),
   frameHeight( s.frameHeight ),
   bExplode(false),
+  flag(0),
   playerPos(s.playerPos),
   attackDistance(s.attackDistance),
   playerWidth(s.playerWidth),
@@ -130,7 +130,7 @@ void Enemy2Msprite::draw() const
   Uint32 y = static_cast<Uint32>(Y());
   
   frames[currentFrame]->draw(x, y);
-  if(flag11 == 1)
+  if(flag == 1)
   {
 	  int p = 10+ X() - Viewport::getInstance().X();
 	  int q = 10+ Y() - Viewport::getInstance().Y();
@@ -144,7 +144,7 @@ void Enemy2Msprite::draw() const
 
 void Enemy2Msprite::resetPosition()
 {
-  flag11 = 1;
+  flag = 1;
   Vector2f position(Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/x"), 
   Gamedata::getInstance().getXmlInt(getName()+"/endLoc/x")), 
   Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/y"), 
