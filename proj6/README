@@ -1,0 +1,47 @@
+Name: Bhavya Ramakrishna
+Clemson Email Address: bramakr@g.clemson.edu
+Course number: 6160
+
+Project no: 6
+Project due date: Friday, Dec 2nd 2016
+
+Project description : Aladin in the desert. The story of the Aladin is fighting enemies (guards with AI). It uses sword to kill the enemies. Sound, HUD for Object pool, god mode and AI were the major additions from the last project.
+Gameplay -
+W     : Move up
+S     : Move Down
+A     : Move Left
+D     : Move Right
+Space : Shoot
+R     : Reset
+G     : God mode
+N     : Reset Health Bar
+M     : Toggle Music
+F1    : HUD as how to play the game
+F2    : Object pool HUD
+
+Incorporated Features:
+We added Sound and Music for the background, shooting and explosion of enemies. 
+
+The Goal of the game is to kill all the enemies and reach the end with the highest score.  The Player being Aladin kills all the enemies using his sword.
+
+There is separate hud for object pool. This can seen by pressing F2.
+
+Restart of the game is done using the reset command, which resets the game to the zero.
+Our player Aladin shoots the enemy (guard) with the knife and the health bar reduces when the enemy touches the Aladin. If the health of the Aladin becomes zero, the game ends with the player losing.
+
+AI has been implemented where, when the enemy gets exploded it comes back as smart sprite and attacks the player by approaching near to the player. It becomes hard to the player as all the enemies will be attacking the player.
+
+HUD with the information about how to play the game stays on the screen for 3s and F1 is pressed to retrieve the information.
+
+GOD mode has been added where the health of the player does not decrease and the player can play until he reaches the end. Get the highest score as possible and move to the end of game(towards right!)
+
+Problems with this project: No
+
+References : 
+Sound - 
+https://www.freesound.org/
+Aladin : http://www.lonimation.com/images/aladdin-khih.jpg
+Orange Sky : https://spinningwebbs.files.wordpress.com/2014/07/2014-07-03-06-30-59.jpg
+Apple : https://d14nx13ylsx7x8.cloudfront.net/lesson_images/images/000/001/950/original/temp1414261694.png
+Guard : https://www.spriters-resource.com/resources/sheets/47/50448.png
+Desert : http://pukahuna.deviantart.com/art/Desert-Background-427109965
