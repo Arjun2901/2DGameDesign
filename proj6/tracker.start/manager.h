@@ -34,7 +34,7 @@ private:
   World Land;
   playerMsprite *player;
   Viewport& viewport;
-  int flag2;
+  bool isDiplayHud;
   Hud hud1;
   Health bar;
   unsigned int numberOfSmart;
@@ -49,8 +49,8 @@ private:
   SDLSound sound;
   int score;
   int count;
-  bool objflag;
-  bool godmode;
+  bool isObjPoolDiplayHud;
+  bool toggleGodMode;
   int lose;
   int win;
   void draw() const;

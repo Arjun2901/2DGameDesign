@@ -8,8 +8,8 @@
 
 Hud::Hud():
 	screen(IOManager::getInstance().getScreen()),
-	RED(SDL_MapRGB(screen->format, 0xff, 0xff, 0)),
-	flag2(false){}
+	RED(SDL_MapRGB(screen->format, 0xff, 0xff, 0))
+	{}
 Hud::~Hud(){}
 void Hud::drawhud(float secs, float fpss) const {
 	IOManager& io = IOManager::getInstance();
@@ -30,7 +30,6 @@ void Hud::drawhud(float secs, float fpss) const {
 	io.printMessageAt("Press g for Godmode  ", Gamedata::getInstance().getXmlInt("Hud/xval")+5, Gamedata::getInstance().getXmlInt("Hud/yval")+180);
 	io.printMessageAt("Press m to toggle Music  ", Gamedata::getInstance().getXmlInt("Hud/xval")+5, Gamedata::getInstance().getXmlInt("Hud/yval")+200);
 	
-    
      Sint16 y1 = 20;
      y1 += 0;
      Sint16 x1 = 10, x2 = 310;
@@ -46,7 +45,8 @@ void Hud::drawhud(float secs, float fpss) const {
      Draw_AALine(screen, 162, 22, 162, 262, 298, 128, 128, 128, 0xf0/2);  
      SDL_Flip(screen);
 }
-void Hud::objectpool_hud(int bulletlistsize, int freelistsize) const{
+void Hud::objectpool_hud(int bulletlistsize, int freelistsize) const
+{
 	IOManager& io = IOManager::getInstance();
 	io.printMessageValueAt("bulletlist = ", bulletlistsize, Gamedata::getInstance().getXmlInt("Hud/xval")+540, Gamedata::getInstance().getXmlInt("Hud/yval")+15);
     io.printMessageValueAt("freelist = ", freelistsize, Gamedata::getInstance().getXmlInt("Hud/xval")+540, Gamedata::getInstance().getXmlInt("Hud/yval")+35);
@@ -61,8 +61,9 @@ void Hud::objectpool_hud(int bulletlistsize, int freelistsize) const{
     Draw_AALine(screen, 647, 32, 647, 82, 210, 128, 128, 128, 0xf0/2);  
      
     SDL_Flip(screen);
-	}
-void Hud::gameover_lost(int score) const {
+}
+void Hud::gameover_lost(int score) const 
+{
 	IOManager& io = IOManager::getInstance();
 	io.printMessageValueAt("You lost with a score of : ",score, Gamedata::getInstance().getXmlInt("Hud/xval")+230, Gamedata::getInstance().getXmlInt("Hud/yval")+180);
 	io.printMessageAt("Press R to Restart or ESC to Quit", Gamedata::getInstance().getXmlInt("Hud/xval")+230, Gamedata::getInstance().getXmlInt("Hud/yval")+210);
@@ -79,7 +80,8 @@ void Hud::gameover_lost(int score) const {
     SDL_Flip(screen);
 	
 }
-void Hud::gameover_win(int score) const {
+void Hud::gameover_win(int score) const 
+{
 	IOManager& io = IOManager::getInstance();
 	io.printMessageValueAt("You won with a score of :",score, Gamedata::getInstance().getXmlInt("Hud/xval")+230, Gamedata::getInstance().getXmlInt("Hud/yval")+180);
 	io.printMessageAt("Press R to Restart or ESC to Quit", Gamedata::getInstance().getXmlInt("Hud/xval")+230, Gamedata::getInstance().getXmlInt("Hud/yval")+210);

@@ -14,8 +14,10 @@ ExplodingSprite::ExplodingSprite(const Sprite& s) :
   );
 }
 
-ExplodingSprite::~ExplodingSprite() { 
-  for ( unsigned int i = 0; i < frames.size(); ++i ) {
+ExplodingSprite::~ExplodingSprite() 
+{ 
+  for ( unsigned int i = 0; i < frames.size(); ++i ) 
+  {
     SDL_FreeSurface( surfaces[i] );
     delete frames[i]; // ExplodingSprite made them, so it deletes them
   }
@@ -23,21 +25,26 @@ ExplodingSprite::~ExplodingSprite() {
   freeList.clear();   // still ...
 }
 
-void ExplodingSprite::draw() const { 
+void ExplodingSprite::draw() const 
+{ 
   // Override draw; use the draw in Chunk, which derives from Sprite.
   // So the draw we're using is actually in Sprite
   std::list<Chunk>::const_iterator ptr = chunks.begin();
-  while (ptr != chunks.end()) {
+  while (ptr != chunks.end()) 
+  {
     ptr->draw();
     ++ptr;
   }
 }
 
-void ExplodingSprite::update(Uint32 ticks) { 
+void ExplodingSprite::update(Uint32 ticks) 
+{ 
   std::list<Chunk>::iterator ptr = chunks.begin();
-  while (ptr != chunks.end()) {
+  while (ptr != chunks.end()) 
+  {
     ptr->update(ticks);
-    if (ptr->goneTooFar()) {  // Check to see if we should free a chunk
+    if (ptr->goneTooFar()) 
+    {  // Check to see if we should free a chunk
       freeList.push_back(*ptr);
       ptr = chunks.erase(ptr);
     }   
@@ -45,7 +52,8 @@ void ExplodingSprite::update(Uint32 ticks) {
   }
 }
 
-void ExplodingSprite::makeChunks(unsigned int n) { 
+void ExplodingSprite::makeChunks(unsigned int n) 
+{ 
   // Break the SDL_Surface into n*n squares; where each square
   // has width and height of frameWidth/n and frameHeight/n
   unsigned int chunk_width = std::max(1u, getFrame()->getWidth()/n);

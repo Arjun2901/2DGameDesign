@@ -1,7 +1,4 @@
-// Arjun Balan        Game Construction
 #include "manager.h"
-
-//Clock* Clock::instance = NULL;
 
 int main(int, char*[]) {
    try {

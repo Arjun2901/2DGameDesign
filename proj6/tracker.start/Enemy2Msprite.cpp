@@ -8,13 +8,15 @@
 #include "explodingSprite.h"
 #include <cmath>
 
-float distance(float x1, float y1, float x2, float y2) {
+float distance(float x1, float y1, float x2, float y2) 
+{
   float x = x1-x2;
   float y = y1-y2;
   return hypot(x, y);
 }
 
-void Enemy2Msprite::advanceFrame(Uint32 ticks) {
+void Enemy2Msprite::advanceFrame(Uint32 ticks) 
+{
 	timeSinceLastFrame += ticks;
 	unsigned int mid = numberOfFrames/2;
 	if (timeSinceLastFrame > frameInterval) 
@@ -45,7 +47,6 @@ Enemy2Msprite::Enemy2Msprite( const std::string& name, const Vector2f &pos, cons
   frames( FrameFactory::getInstance().getFrames(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("Sky/width")),
   worldHeight(Gamedata::getInstance().getXmlInt("Sky/height")),
-
   currentFrame(0),
   numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
   frameInterval( Gamedata::getInstance().getXmlInt(name+"/frameInterval") ),
@@ -58,7 +59,6 @@ Enemy2Msprite::Enemy2Msprite( const std::string& name, const Vector2f &pos, cons
   playerWidth(w),
   playerHeight(h),
   currentMode(NORMAL) 
-  
 { }
 
 Enemy2Msprite::Enemy2Msprite(const Enemy2Msprite& s) :
@@ -80,12 +80,13 @@ Enemy2Msprite::Enemy2Msprite(const Enemy2Msprite& s) :
   playerHeight(s.playerHeight),
   currentMode() 
   { }
-Enemy2Msprite::~Enemy2Msprite(){
-if(explosion)
-  {
-	  delete explosion;
-	  explosion = NULL;
-  }
+Enemy2Msprite::~Enemy2Msprite()
+{
+	if(explosion)
+	{
+		delete explosion;
+		explosion = NULL;
+	}
 }
 /*void Enemy2Msprite::shoot()
 {
@@ -106,13 +107,16 @@ if(explosion)
     bullet.shoot(Vector2f(x,y), vel);
 }*/
 
-void Enemy2Msprite::explode(){
+void Enemy2Msprite::explode()
+{
 	if(explosion) return;
 	explosion = new ExplodingSprite(Sprite(getName(), getPosition(), getVelocity(), frames[currentFrame]));
 	bExplode = true;
 }	
-void Enemy2Msprite::draw() const { 
-	if (explosion){
+void Enemy2Msprite::draw() const 
+{ 
+	if (explosion)
+	{
 		explosion->draw();
 		return;
 	}
@@ -122,7 +126,8 @@ void Enemy2Msprite::draw() const {
   frames[currentFrame]->draw(x, y);
 }
 
-void Enemy2Msprite::resetPosition(){
+void Enemy2Msprite::resetPosition()
+{
    
   Vector2f position(Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/x"), 
   Gamedata::getInstance().getXmlInt(getName()+"/endLoc/x")), 
@@ -132,60 +137,76 @@ void Enemy2Msprite::resetPosition(){
   bExplode = false;
 }
 
-void Enemy2Msprite::goLeft()  { 
+void Enemy2Msprite::goLeft()  
+{ 
   if (X() > 0) velocityX( abs(velocityX()) ); 
 }
-void Enemy2Msprite::goRight() { velocityX( -fabs(velocityX()) ); }
-void Enemy2Msprite::goUp()    { velocityY( -fabs(velocityY()) ); }
-void Enemy2Msprite::goDown()  { velocityY( fabs(velocityY()) ); }
+void Enemy2Msprite::goRight() 
+{ 
+	velocityX( -fabs(velocityX()) ); 
+}
+void Enemy2Msprite::goUp()    
+{ 
+	velocityY( -fabs(velocityY()) );
+}
+void Enemy2Msprite::goDown()  
+{ 
+	velocityY( fabs(velocityY()) ); 
+}
 
-void Enemy2Msprite::update(Uint32 ticks) { 
+void Enemy2Msprite::update(Uint32 ticks) 
+{ 
   advanceFrame(ticks);
-if (explosion){
-		explosion->update(ticks);
-		if(explosion->chunkCount() == 0){
-			delete explosion;
-			explosion = NULL;
-		}
-		return;
+  if (explosion)
+  {
+	explosion->update(ticks);
+	if(explosion->chunkCount() == 0)
+	{
+		delete explosion;
+		explosion = NULL;
+	}
+	return;
   }
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
   setPosition(getPosition() + incr);
 
-  if ( Y() < 0) {
+  if ( Y() < 0) 
+  {
     velocityY( abs( velocityY() ) );
   }
-  if ( Y() > worldHeight-frameHeight) {
+  if ( Y() > worldHeight-frameHeight) 
+  {
     velocityY( -abs( velocityY() ) );
   }
 
-  if ( X() < 0) {
+  if ( X() < 0)
+  {
     velocityX( abs( velocityX() ) );
   }
-  if ( X() > worldWidth-frameWidth) {
+  if ( X() > worldWidth-frameWidth) 
+  {
     velocityX( -abs( velocityX() ) );
  
   }  
   
-	//bullet.update(ticks, getPosition());
-	if(bExplode == true)
-	{
-		float x= X()+getFrame()->getWidth()/2;
-		float y= Y()+getFrame()->getHeight()/2;
-		float ex= playerPos[0]+playerWidth/2;
-		float ey= playerPos[1]+playerHeight/2;
-		float distanceToEnemy = ::distance( x, y, ex, ey );
-		/*if(distanceToEnemy > attackDistance ) {
-		if( (velocityX() > 0 && playerPos[0] < X())   || (velocityX() < 0 && playerPos[0] > X() ) )
-		   velocityX(velocityX()*(-1));
-		}*/
+  //bullet.update(ticks, getPosition());
+  if(bExplode == true)
+  {
+	float x= X()+getFrame()->getWidth()/2;
+	float y= Y()+getFrame()->getHeight()/2;
+	float ex= playerPos[0]+playerWidth/2;
+	float ey= playerPos[1]+playerHeight/2;
+	float distanceToEnemy = ::distance( x, y, ex, ey );
 		
-		if  ( currentMode == NORMAL ) {
+	if  ( currentMode == NORMAL ) 
+	{
 		if(distanceToEnemy < attackDistance) currentMode = EVADE;
-		}
-	  else if  ( currentMode == EVADE ) {
+	}
+	else if  ( currentMode == EVADE ) 
+	{
 		if(distanceToEnemy > attackDistance) currentMode=NORMAL;
-		else {
+		else 
+		{
 		  if ( x > ex ) goRight();
 		  if ( x < ex ) goLeft();
 		  if ( y < ey ) goDown();

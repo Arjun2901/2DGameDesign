@@ -14,18 +14,19 @@
 int flag = 0;
 int flag1 = 0;
 
-class ScaledSpriteCompare {
+class ScaledSpriteCompare 
+{
 public:
   bool operator()(const ScaledSprite* lhs, const ScaledSprite* rhs) {
     return lhs->getScale() < rhs->getScale();
   }
 };
 
-Manager::~Manager() { 
+Manager::~Manager() 
+{ 
   // These deletions eliminate "definitely lost" and
   // "still reachable"s in Valgrind.
   SDL_FreeSurface(orbSurface);
-  //std::cout << "size" << sprites.size() << std::endl;
   for (unsigned i = 0; i < sprites.size(); ++i) {
     delete sprites[i];
   }
@@ -48,7 +49,7 @@ Manager::Manager() :
   Land("Land", Gamedata::getInstance().getXmlInt("Land/factor") ),
   player(new playerMsprite("Aladin")),
   viewport( Viewport::getInstance() ),
-  flag2(false),
+  isDiplayHud(false),
   hud1(),
   bar(),
   numberOfSmart(0),
@@ -63,8 +64,8 @@ Manager::Manager() :
   sound(),
   score(0),
   count(0),
-  objflag(false),
-  godmode(0),
+  isObjPoolDiplayHud(false),
+  toggleGodMode(0),
   lose(0),
   win(0)
 {
@@ -140,12 +141,12 @@ void Manager::draw() const {
   {
 	  hud1.gameover_win(score);
   }
-  if(flag2 || clock.getSeconds() < 4)
+  if(isDiplayHud || clock.getSeconds() < 4)
   {
 	hud1.drawhud(clock.getSeconds(),clock.getfps());
 
   }
-  if(objflag)
+  if(isObjPoolDiplayHud)
   {
 	  hud1.objectpool_hud(player->getbullet().getBulletlistCount(), player->getbullet().getFreelistCount());
   }
@@ -153,7 +154,7 @@ void Manager::draw() const {
   io.printMessageAt(title, 10, 450);
   io.printMessageValueAt("Score : ", score , 360, 80);
   io.printMessageAt("Ready to Shoot", 360, 60);
-  if(godmode ==1)
+  if(toggleGodMode ==1)
   {
 	  io.printMessageAt("God Mode", 360, 100);
   }
@@ -253,7 +254,7 @@ void Manager::update() {
 	clock.pause();
 	sound.playSound(2);		
  }  
- if(godmode ==1)
+ if(toggleGodMode ==1)
  {
 	 bar.reset();
  }
@@ -323,7 +324,7 @@ void Manager::play() {
 		   clock.start();
            bar.reset();
            player->reset();
-           godmode =0;
+           toggleGodMode =0;
            std::vector<Drawable*>::iterator iter = sprites.begin(); 	
 	       while(iter != sprites.end()){
 			   if((*iter)->getName() == "Enemy")
@@ -339,25 +340,25 @@ void Manager::play() {
            break;
         }
         if(keystate[SDLK_F1]) {
-			 if(!flag2)
+			 if(!isDiplayHud)
 			 { 
-				flag2 = true;
+				isDiplayHud = true;
 			 }
 			 else
 			 {  
-				flag2 = false;
+				isDiplayHud = false;
 		     }
 		}
 		
 		if(keystate[SDLK_F2])
 		{
-			if(!objflag)
+			if(!isObjPoolDiplayHud)
 			{
-				objflag = true;
+				isObjPoolDiplayHud = true;
 			}
 			else
 			{
-				objflag = false;
+				isObjPoolDiplayHud = false;
 			}
 		}
 		if(keystate[SDLK_d])
@@ -382,11 +383,11 @@ void Manager::play() {
 		}
 		if ( keystate[SDLK_g] ) 
 		{
-		  if(!godmode)
+		  if(!toggleGodMode)
 		  {
-			  godmode = true;
+			  toggleGodMode = true;
 		  }
-		  else godmode = false;
+		  else toggleGodMode = false;
         }
          
 		player->setCollisionStrategy(2);

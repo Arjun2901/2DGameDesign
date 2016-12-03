@@ -15,7 +15,6 @@ void objectpool_hud(int,int) const;
 private:
 SDL_Surface* screen;
 const Uint32 RED;
-bool flag2;
 Hud(const Hud&);
 Hud& operator=(const Hud&);
 };

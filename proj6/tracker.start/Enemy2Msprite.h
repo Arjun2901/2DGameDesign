@@ -11,7 +11,6 @@ public:
   Enemy2Msprite(const Enemy2Msprite&);
   virtual ~Enemy2Msprite(); 
   void setPlayerPos(const Vector2f& p) { playerPos = p; }
-
   virtual void draw() const;
   virtual void update(Uint32 ticks);
   unsigned int getChunks();
@@ -32,7 +31,6 @@ protected:
   const std::vector<Frame *> frames;
   int worldWidth;
   int worldHeight;
-
   unsigned currentFrame;
   unsigned numberOfFrames;
   unsigned frameInterval;

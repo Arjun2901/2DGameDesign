@@ -35,7 +35,8 @@ Health::Health(int sx, int sy, int tl, int cl, int bl,
 {
 }
 
-void Health::drawBox() const {
+void Health::drawBox() const 
+{
   Draw_AALine(screen, start[0], start[1], 
                       start[0]+totalLength, start[1], 
                       thick, GRAY);
@@ -55,19 +56,21 @@ void Health::drawBox() const {
                       2.0, BLACK);
 }
 
-void Health::draw() const {
+void Health::draw() const 
+{
   drawBox();
   Draw_AALine(screen, start[0], start[1], 
                       start[0]+currentLength, start[1], 
                       thick, color);
 }
-void Health::update() {
-	if(currentLength >0){
+void Health::update() 
+{
+	if(currentLength >0)
+	{
     currentLength -= increments;
-  }
-  else
-  {
+	}
+	else
+	{
 	  barlen = 1;
-  }
-  
+	}
 }

@@ -6,7 +6,8 @@
 #include "aaline.h"
 #include "playerMsprite.h"
 
-class Health {
+class Health 
+{
 public:
   Health();
   Health(int sx, int sy, int tl, int cl, int bl,
