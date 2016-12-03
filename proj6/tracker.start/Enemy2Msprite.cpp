@@ -128,11 +128,15 @@ void Enemy2Msprite::draw() const
   Uint32 y = static_cast<Uint32>(Y());
   
   frames[currentFrame]->draw(x, y);
-  int p = 10+ X() - Viewport::getInstance().X();
-  int q = 10+ Y() - Viewport::getInstance().Y();
-  std::stringstream strm;
-  strm << currentMode;
-  io.printMessageBlackAt( strm.str(), p, q);
+  if(flag11 == 1)
+  {
+	  int p = 10+ X() - Viewport::getInstance().X();
+	  int q = 10+ Y() - Viewport::getInstance().Y();
+	  std::stringstream strm;
+	  strm << "SM";
+	  
+	  io.printMessageBlackAt( strm.str(), p+15, q);
+  }
   
 }
 
@@ -144,6 +148,7 @@ void Enemy2Msprite::resetPosition()
   Gamedata::getInstance().getRandFloat(Gamedata::getInstance().getXmlInt(getName()+"/startLoc/y"), 
   Gamedata::getInstance().getXmlInt(getName()+"/endLoc/y")));
   setPosition(position);
+  flag11 = 1;
 }
 
 void Enemy2Msprite::goLeft()  
