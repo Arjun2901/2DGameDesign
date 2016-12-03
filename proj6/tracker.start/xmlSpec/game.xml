@@ -102,7 +102,7 @@
   <frames>12</frames>
   <frameInterval>150</frameInterval>
   <speedX>-55</speedX>
-  <speedY>0</speedY>
+  <speedY>20</speedY>
   <transparency>true</transparency>
   <attackDistance>200</attackDistance>
   <chunk>

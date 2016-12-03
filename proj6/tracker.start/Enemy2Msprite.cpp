@@ -138,7 +138,7 @@ void Enemy2Msprite::resetPosition()
 
 void Enemy2Msprite::goLeft()  
 { 
-  if (X() > 0) velocityX( abs(velocityX()) ); 
+  if (X() > 0) velocityX( abs(velocityX())); 
 }
 void Enemy2Msprite::goRight() 
 { 
@@ -170,11 +170,11 @@ void Enemy2Msprite::update(Uint32 ticks)
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
   setPosition(getPosition() + incr);
 
-  if ( Y() < 0) 
+  if ( Y() < 520) 
   {
     velocityY( abs( velocityY() ) );
   }
-  if ( Y() > worldHeight-frameHeight) 
+  if ( Y() > worldHeight-frameHeight ) 
   {
     velocityY( -abs( velocityY() ) );
   }
