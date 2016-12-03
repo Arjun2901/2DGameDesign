@@ -18,15 +18,15 @@
 </view>
 
 <world>
-  <width>1600</width>
+  <width>3200</width>
   <height>800</height>
 </world>
 <Sky>
-  <width>1600</width>
+  <width>3200</width>
   <height>800</height>
 </Sky>
 <Sky>
-  <file>images/nightsky2.jpg</file>
+  <file>images/nightsky3.png</file>
   <red>193</red>
   <green>205</green>
   <blue>205</blue>
@@ -34,12 +34,12 @@
   <transparency>true</transparency>
 </Sky>
 <Buildings>
-  <width>1600</width>
+  <width>3200</width>
   <height>800</height>
 </Buildings>
 
 <Buildings>
-  <file>images/pyra11.png</file>
+  <file>images/pyrafinal1.png</file>
   <red>193</red>
   <green>205</green>
   <blue>205</blue>
@@ -47,11 +47,11 @@
   <transparency>true</transparency>
 </Buildings>
 <Pyramid>
-  <width>1600</width>
+  <width>3200</width>
   <height>800</height>
 </Pyramid>
 <Pyramid>
-  <file>images/pyra12.png</file>
+  <file>images/pyrafinal2.png</file>
   <red>193</red>
   <green>205</green>
   <blue>205</blue>
@@ -60,11 +60,11 @@
 </Pyramid>
 
 <Land>
-  <width>1600</width>
+  <width>3200</width>
   <height>800</height>
 </Land>
 <Land>
-  <file>images/desert.png</file>
+  <file>images/desert1.png</file>
   <red>193</red>
   <green>205</green>
   <blue>205</blue>
@@ -97,7 +97,7 @@
 
 <Enemy>
   <file>images/guardd.png</file>
-  <startLoc x="1500" y="580"/>
+  <startLoc x="3000" y="580"/>
   <endLoc x="500" y="700"/>
   <frames>12</frames>
   <frameInterval>150</frameInterval>
@@ -121,6 +121,17 @@
     <speedY>0</speedY>
     <transparency>true</transparency>
 </genie>
+
+<jasmine>
+    <file>images/jasmine.png</file>
+    <startLoc x="3100" y="680"/>
+	<endLoc x="3100" y="680"/>
+    <frames>1</frames>
+    <frameInterval>150</frameInterval>
+    <speedX>0</speedX>
+    <speedY>0</speedY>
+    <transparency>true</transparency>
+</jasmine>
 
 <sword>
     <file>images/sword.png</file>

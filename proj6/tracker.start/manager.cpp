@@ -79,6 +79,8 @@ Manager::Manager() :
   printOrbs();
   makeEnemy();
   sprites.push_back( new Sprite("genie") );
+  sprites.push_back( new Sprite("jasmine") );
+  
   viewport.setObjectToTrack(sprites[currentSprite]);
 }
 

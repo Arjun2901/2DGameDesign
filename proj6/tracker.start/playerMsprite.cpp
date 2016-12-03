@@ -217,7 +217,7 @@ void playerMsprite::detach( Enemy2Msprite* o )
 bool playerMsprite::check_win()
 {
 	bool var = false;
-	 if(X() > 1490 && X() < 1510)
+	 if(X() > 3100 && X() < 3200)
 	  {
 		return true;
 	  }
@@ -241,7 +241,7 @@ if (explosion){
   float y = incr[1];
   if(flag == 1)
   {
-	  if(X() < 1510)
+	  if(X() < 3110)
 	  {
 		float t = X() + x;
 		X(t);
